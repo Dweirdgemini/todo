@@ -24,6 +24,6 @@ export default function TodoSummaryProps({
                 </button>
             )}
         </div>
-    )
+    );
 
 }
