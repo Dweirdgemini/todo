@@ -17,7 +17,7 @@ function App() {
     function addTodo(title :string) {
        setTodos(prevTodos => [
         {
-          id:prevTodos.length + 1,
+          id:Date.now(),
           title,
           completed: false
         },
