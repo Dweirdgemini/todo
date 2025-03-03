@@ -18,15 +18,25 @@ onDelete
         } else {
             return a.completed ? 1 : -1;
         }
-    });    return(
+    }); 
+    
+    return(
+        <>
         <div className="space-y-2">
         {todoSorted.map((todo) => (
             <TodoItem
             key={todo.id}
             todo={todo}
             onCompletedChange={onCompletedChange}
+            onDelete={onDelete}
             />
         ))}
         </div>
+        {todos.length === 0 && (
+            <p className="text-center text-sm text-gray-500">
+                You Have NO Todos, Add New One
+            </p>
+        )}
+        </>
     );
 }

@@ -1,8 +1,8 @@
 import { useState } from "react";
-import TodoItem from "./components/TodoItem";
 import { dummyData } from "./data/todos";
 import AddTodoForm from "./components/AddTodoForm";
 import TodoList from "./components/TodoList";
+import TodoSummary from "./components/TodoSummary";
 
 function App() {
   const [todos, setTodos] = useState(dummyData)
@@ -23,16 +23,29 @@ function App() {
         },
         ...prevTodos
        ]) 
-    }
+  }
+
+  function deleteTodo(id:number) {
+    setTodos(prevTodos => prevTodos.filter(todo => todo.id !== id))
+  }
+
   return (
-    <main className="py-10 h-screen space-y-5">
-      <h1 className="font-bold text-3xl text-center">
-        Your Todos
+    <main className="py-10 h-screen space-y-5 overflow-y-auto">
+      <h1 className="f text-3xl text-center font-extrabold font-serif text-red-800">
+        MY Todos
       </h1>
       <div className="max-w-lg  mx-auto bg-slate-100 rounded-md p-5 space-y-6">
       <AddTodoForm onSubmit={addTodo}/>
-      <TodoList todos={todos} onCompletedChange={setTodoCompleted}/>
-      </div>
+      <TodoList 
+      todos={todos}
+       onCompletedChange={setTodoCompleted}
+       onDelete={deleteTodo}
+      />
+    </div>
+    <TodoSummary
+    todos={todos}
+    deleteAllCompleted={() => {}}
+    />
     </main>
   );
 }
